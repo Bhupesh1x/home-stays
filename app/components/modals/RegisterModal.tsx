@@ -1,16 +1,17 @@
 "use client";
 
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { toast } from "react-hot-toast";
 
 import { useRegisterModal } from "@/app/hooks/use-register-hook";
 
 import Modal from "./Modal";
+import Button from "../shared/Button";
 import Heading from "../shared/Heading";
 import Input from "../shared/input/Input";
 
@@ -42,35 +43,57 @@ function RegisterModal() {
     }
   };
 
-  const bodyContent = useMemo(() => {
-    return (
-      <div className="flex flex-col gap-4">
-        <Heading title="Welcome to HomeStays" subTitle="Create an account!" />
-        <Input
-          id="name"
-          label="Name"
-          register={register}
-          errors={errors}
-          required
-        />
-        <Input
-          id="email"
-          label="Email"
-          register={register}
-          errors={errors}
-          required
-        />
-        <Input
-          id="password"
-          type="password"
-          label="Password"
-          register={register}
-          errors={errors}
-          required
-        />
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading title="Welcome to HomeStays" subTitle="Create an account!" />
+      <Input
+        id="name"
+        label="Name"
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="email"
+        label="Email"
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="password"
+        type="password"
+        label="Password"
+        register={register}
+        errors={errors}
+        required
+      />
+    </div>
+  );
+
+  const footerContent = (
+    <div className="flex flex-col gap-4 mt-3">
+      <hr />
+      <Button
+        outline
+        label="Continue with Google"
+        icon={FcGoogle}
+        onClick={() => {}}
+      />
+      <Button
+        outline
+        label="Continue with Github"
+        icon={AiFillGithub}
+        onClick={() => {}}
+      />
+      <div className="flex items-center justify-center mt-2">
+        <p>Already have an account?</p>
+        <p className="pl-1 text-neutral-800 hover:underline font-bold cursor-pointer">
+          Log in
+        </p>
       </div>
-    );
-  }, [errors, register]);
+    </div>
+  );
 
   return (
     <Modal
@@ -81,6 +104,7 @@ function RegisterModal() {
       disabled={isLoading}
       onClose={onClose}
       body={bodyContent}
+      footer={footerContent}
     />
   );
 }

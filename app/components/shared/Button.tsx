@@ -31,7 +31,7 @@ function Button({
           : "py-3 font-semibold text-md border-2"
       }`}
     >
-      {Icon && <Icon size={18} className="absolute top-3 left-4" />}
+      {Icon && <Icon size={18} className="absolute top-4 left-4" />}
       {label}
     </button>
   );
