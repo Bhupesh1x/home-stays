@@ -1,7 +1,8 @@
 "use client";
 
-import axios from "axios";
+import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -15,12 +16,13 @@ import Button from "../shared/Button";
 import Heading from "../shared/Heading";
 import Input from "../shared/input/Input";
 
-function RegisterModal() {
+function LoginModal() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const { isOpen, type, onClose } = useModal();
 
-  const isModalOpen = isOpen && type === "register";
+  const isModalOpen = isOpen && type === "login";
 
   const {
     register,
@@ -29,7 +31,6 @@ function RegisterModal() {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -37,28 +38,33 @@ function RegisterModal() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    try {
-      await axios.post("/api/register", data);
+    const notify = toast.loading("Logging you in...");
+
+    const result = await signIn("credentials", {
+      ...data,
+      redirect: false,
+    });
+    setIsLoading(false);
+
+    if (result?.ok) {
+      toast.success("Logged In", {
+        id: notify,
+      });
+      router.refresh();
       reset();
       onClose();
-    } catch (error) {
-      console.log("err", error);
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
+    }
+
+    if (result?.error) {
+      toast.error(result.error, {
+        id: notify,
+      });
     }
   };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to HomeStays" subTitle="Create an account!" />
-      <Input
-        id="name"
-        label="Name"
-        register={register}
-        errors={errors}
-        required
-      />
+      <Heading title="Welcome back" subTitle="Login to your account!" />
       <Input
         id="email"
         label="Email"
@@ -105,7 +111,7 @@ function RegisterModal() {
 
   return (
     <Modal
-      title="Register"
+      title="Login"
       actionLabel="Continue"
       onSubmit={handleSubmit(onSubmit)}
       isOpen={isModalOpen}
@@ -117,4 +123,4 @@ function RegisterModal() {
   );
 }
 
-export default RegisterModal;
+export default LoginModal;

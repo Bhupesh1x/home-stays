@@ -33,7 +33,7 @@ function UserMenu() {
       {isOpen && (
         <div className="absolute top-12 right-0 bg-white shadow-md rounded-xl w-[40vw] md:w-3/4 overflow-hidden text-sm">
           <div className="">
-            <MenuItem label="Login" onClick={() => {}} />
+            <MenuItem label="Login" onClick={() => onOpen("login")} />
             <MenuItem label="Sign up" onClick={() => onOpen("register")} />
           </div>
         </div>

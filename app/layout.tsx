@@ -2,9 +2,10 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "./components/navbar/Navbar";
+import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
-import ClientComponent from "./components/providers/ClientComponent";
 import ToastProvider from "./components/providers/ToastProvider";
+import ClientComponent from "./components/providers/ClientComponent";
 
 export const metadata = {
   title: "Home Stays",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ClientComponent>
           <ToastProvider />
           <RegisterModal />
+          <LoginModal />
           <Navbar />
         </ClientComponent>
         {children}
