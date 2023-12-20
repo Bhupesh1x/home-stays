@@ -1,6 +1,8 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
+import getCurrUser from "./actions/getCurrentUser";
+
 import Navbar from "./components/navbar/Navbar";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
@@ -16,11 +18,12 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currUser = await getCurrUser();
   return (
     <html lang="en" className={font.className}>
       <body>
@@ -28,7 +31,7 @@ export default function RootLayout({
           <ToastProvider />
           <RegisterModal />
           <LoginModal />
-          <Navbar />
+          <Navbar currUser={currUser} />
         </ClientComponent>
         {children}
       </body>
