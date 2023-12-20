@@ -28,7 +28,7 @@ export default async function getCurrUser() {
       ...currUser,
       createdAt: currUser.createdAt.toISOString(),
       updatedAt: currUser.createdAt.toISOString(),
-      emailVerified: currUser.createdAt.toISOString() || null,
+      emailVerified: currUser.createdAt?.toISOString() || null,
     };
   } catch (error) {
     return null;

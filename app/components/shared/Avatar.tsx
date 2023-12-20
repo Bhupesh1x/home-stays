@@ -1,9 +1,13 @@
 import Image from "next/image";
 
-function Avatar() {
+type Props = {
+  src?: string | null | undefined;
+};
+
+function Avatar({ src }: Props) {
   return (
     <Image
-      src="/images/placeholder.jpg"
+      src={src || "/images/placeholder.jpg"}
       alt="avatar"
       height="30"
       width="30"

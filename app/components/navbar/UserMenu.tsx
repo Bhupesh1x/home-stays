@@ -33,7 +33,7 @@ function UserMenu({ currUser }: Props) {
       >
         <AiOutlineMenu />
         <div className="hidden md:block">
-          <Avatar />
+          <Avatar src={currUser?.image} />
         </div>
       </div>
       {isOpen && (
