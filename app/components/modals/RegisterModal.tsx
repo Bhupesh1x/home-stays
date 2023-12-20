@@ -8,7 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
-import { useRegisterModal } from "@/app/hooks/use-register-hook";
+import { useModal } from "@/app/hooks/use-modal-hook";
 
 import Modal from "./Modal";
 import Button from "../shared/Button";
@@ -18,7 +18,9 @@ import Input from "../shared/input/Input";
 function RegisterModal() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { isOpen, onClose } = useRegisterModal();
+  const { isOpen, type, onClose } = useModal();
+
+  const isModalOpen = isOpen && type === "register";
 
   const {
     register,
@@ -105,7 +107,7 @@ function RegisterModal() {
       title="Register"
       actionLabel="Continue"
       onSubmit={handleSubmit(onSubmit)}
-      isOpen={isOpen}
+      isOpen={isModalOpen}
       disabled={isLoading}
       onClose={onClose}
       body={bodyContent}
