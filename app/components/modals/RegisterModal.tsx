@@ -23,6 +23,7 @@ function RegisterModal() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -35,8 +36,10 @@ function RegisterModal() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       await axios.post("/api/register", data);
+      reset();
       onClose();
     } catch (error) {
+      console.log("err", error);
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
@@ -56,6 +59,7 @@ function RegisterModal() {
       <Input
         id="email"
         label="Email"
+        type="email"
         register={register}
         errors={errors}
         required
@@ -64,6 +68,7 @@ function RegisterModal() {
         id="password"
         type="password"
         label="Password"
+        min={4}
         register={register}
         errors={errors}
         required

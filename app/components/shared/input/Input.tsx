@@ -11,6 +11,7 @@ type Props = {
   disabled?: boolean;
   required?: boolean;
   formatPrice?: boolean;
+  min?: number;
 };
 
 function Input({
@@ -21,6 +22,7 @@ function Input({
   disabled,
   formatPrice,
   required,
+  min,
   type = "text",
 }: Props) {
   return (
@@ -34,7 +36,7 @@ function Input({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...register(id, { required, minLength: min })}
         type={type}
         className={`peer w-full pt-6 p-3 font-light bg-white rounded-md border-2 outline-none transition disabled:opacity-70 disabled:cursor-not-allowed ${
           formatPrice ? "pl-9" : "pl-4"

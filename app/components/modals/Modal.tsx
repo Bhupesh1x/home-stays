@@ -129,7 +129,7 @@ const Modal = ({
                 className="
                 flex 
                 items-center 
-                p-6
+                p-3
                 rounded-t
                 justify-center
                 relative
@@ -145,9 +145,9 @@ const Modal = ({
                 <div className="text-lg font-semibold">{title}</div>
               </div>
               {/*body*/}
-              <div className="relative p-6 flex-auto">{body}</div>
+              <div className="relative p-3 flex-auto">{body}</div>
               {/*footer*/}
-              <div className="flex flex-col gap-2 p-6">
+              <div className="flex flex-col gap-2 p-3">
                 <div className="flex flex-row items-center gap-4 w-full">
                   {secondaryAction && secondaryActionLabel && (
                     <Button
