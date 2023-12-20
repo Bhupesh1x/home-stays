@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { SafeUser } from "@/app/types";
 
 import Logo from "./Logo";
 import Search from "./Search";
@@ -6,7 +6,7 @@ import UserMenu from "./UserMenu";
 import Container from "../shared/Container";
 
 type Props = {
-  currUser?: User | null;
+  currUser?: SafeUser | null;
 };
 
 function Navbar({ currUser }: Props) {

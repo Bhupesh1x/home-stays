@@ -1,16 +1,17 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
+import { SafeUser } from "@/app/types";
 import { useModal } from "@/app/hooks/use-modal-hook";
 
 import Avatar from "../shared/Avatar";
 import MenuItem from "./MenuItem";
-import { User } from "@prisma/client";
 
 type Props = {
-  currUser?: User | null;
+  currUser?: SafeUser | null;
 };
 
 function UserMenu({ currUser }: Props) {
@@ -43,7 +44,8 @@ function UserMenu({ currUser }: Props) {
               <MenuItem label="My favorites" onClick={() => {}} />
               <MenuItem label="My reservations" onClick={() => {}} />
               <MenuItem label="HomeStays my home" onClick={() => {}} />
-              <MenuItem label="Logout" onClick={() => {}} />
+              <hr />
+              <MenuItem label="Logout" onClick={() => signOut()} />
             </>
           ) : (
             <>
