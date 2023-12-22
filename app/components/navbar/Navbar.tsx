@@ -3,6 +3,7 @@ import { SafeUser } from "@/app/types";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import Categories from "./Categories";
 import Container from "../shared/Container";
 
 type Props = {
@@ -21,6 +22,7 @@ function Navbar({ currUser }: Props) {
           </div>
         </Container>
       </div>
+      <Categories />
     </nav>
   );
 }
