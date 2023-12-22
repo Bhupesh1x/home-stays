@@ -3,7 +3,7 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
@@ -19,7 +19,7 @@ import Input from "../shared/input/Input";
 function RegisterModal() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { isOpen, type, onClose } = useModal();
+  const { isOpen, type, onClose, onOpen } = useModal();
 
   const isModalOpen = isOpen && type === "register";
 
@@ -49,6 +49,11 @@ function RegisterModal() {
       setIsLoading(false);
     }
   };
+
+  const toogle = useCallback(() => {
+    onClose();
+    onOpen("login");
+  }, [onClose, onOpen]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -97,7 +102,10 @@ function RegisterModal() {
       />
       <div className="flex items-center justify-center mt-2">
         <p>Already have an account?</p>
-        <p className="pl-1 text-neutral-800 hover:underline font-bold cursor-pointer">
+        <p
+          className="pl-1 text-neutral-800 hover:underline font-bold cursor-pointer"
+          onClick={toogle}
+        >
           Log in
         </p>
       </div>

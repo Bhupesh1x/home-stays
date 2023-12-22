@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
@@ -20,7 +20,7 @@ function LoginModal() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { isOpen, type, onClose } = useModal();
+  const { isOpen, type, onClose, onOpen } = useModal();
 
   const isModalOpen = isOpen && type === "login";
 
@@ -62,6 +62,11 @@ function LoginModal() {
     }
   };
 
+  const toogle = useCallback(() => {
+    onClose();
+    onOpen("register");
+  }, [onClose, onOpen]);
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subTitle="Login to your account!" />
@@ -101,9 +106,12 @@ function LoginModal() {
         onClick={() => signIn("github")}
       />
       <div className="flex items-center justify-center mt-2">
-        <p>Already have an account?</p>
-        <p className="pl-1 text-neutral-800 hover:underline font-bold cursor-pointer">
-          Log in
+        <p>First time using HomeStays?</p>
+        <p
+          className="pl-1 text-neutral-800 hover:underline font-bold cursor-pointer"
+          onClick={toogle}
+        >
+          Create an account
         </p>
       </div>
     </div>
