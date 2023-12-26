@@ -4,6 +4,7 @@ import "./globals.css";
 import getCurrUser from "./actions/getCurrentUser";
 
 import Navbar from "./components/navbar/Navbar";
+import RentModal from "./components/modals/RentModal";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import ToastProvider from "./components/providers/ToastProvider";
@@ -31,6 +32,7 @@ export default async function RootLayout({
           <ToastProvider />
           <RegisterModal />
           <LoginModal />
+          <RentModal />
           <Navbar currUser={currUser} />
         </ClientComponent>
         {children}

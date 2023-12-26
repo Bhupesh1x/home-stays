@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "register" | "login";
+export type ModalType = "register" | "login" | "rent";
 
 interface ModalStore {
   isOpen: boolean;

@@ -22,9 +22,20 @@ function UserMenu({ currUser }: Props) {
     setIsOpen((value) => !value);
   }, []);
 
+  const onRentClick = () => {
+    if (!currUser) {
+      return onOpen("login");
+    }
+
+    onOpen("rent");
+  };
+
   return (
     <div className="relative flex items-center gap-3">
-      <div className="hidden md:block rounded-full hover:bg-neutral-100 cursor-pointer transition py-3 px-4 text-sm font-semibold">
+      <div
+        className="hidden md:block rounded-full hover:bg-neutral-100 cursor-pointer transition py-3 px-4 text-sm font-semibold"
+        onClick={onRentClick}
+      >
         HomeStays my home
       </div>
       <div
@@ -43,7 +54,7 @@ function UserMenu({ currUser }: Props) {
               <MenuItem label="My trips" onClick={() => {}} />
               <MenuItem label="My favorites" onClick={() => {}} />
               <MenuItem label="My reservations" onClick={() => {}} />
-              <MenuItem label="HomeStays my home" onClick={() => {}} />
+              <MenuItem label="HomeStays my home" onClick={onRentClick} />
               <hr />
               <MenuItem label="Logout" onClick={() => signOut()} />
             </>
