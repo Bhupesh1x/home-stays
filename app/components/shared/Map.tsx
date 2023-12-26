@@ -31,6 +31,7 @@ function Map({ center }: Props) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {center && <Marker position={center as Leaf.LatLngExpression} />}
     </MapContainer>
   );
 }
