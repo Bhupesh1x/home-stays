@@ -13,6 +13,7 @@ import { categories } from "../navbar/Categories";
 import ImageUpload from "../shared/input/ImageUpload";
 import CategoryInput from "../shared/input/CategoryInput";
 import CountrySelect from "../shared/input/CountrySelect";
+import Input from "../shared/input/Input";
 
 enum STEPS {
   CATEGORY = 0,
@@ -26,6 +27,7 @@ enum STEPS {
 function RentModal() {
   const { isOpen, onClose, type } = useModal();
   const [steps, setSteps] = useState(STEPS.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -180,17 +182,71 @@ function RentModal() {
             />
           </div>
         );
+
+      case STEPS.DESCRIPTION:
+        return (
+          <div className="flex flex-col gap-4">
+            <Heading
+              title="How would you describe your place?"
+              subTitle="Short and sweet works best!"
+            />
+
+            <Input
+              id="title"
+              label="Title"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+              min={3}
+            />
+            <hr />
+            <Input
+              id="description"
+              label="Description"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+              min={3}
+            />
+          </div>
+        );
+
+      case STEPS.PRICE:
+        return (
+          <div className="flex flex-col gap-4">
+            <Heading
+              title="Now, set your price"
+              subTitle="How much do you charge per night?"
+            />
+
+            <Input
+              id="price"
+              label="Price"
+              type="number"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+              formatPrice
+            />
+          </div>
+        );
     }
   }, [
-    Map,
-    bathroomCount,
-    category,
-    guestCount,
-    location,
-    roomCount,
-    setCustomValue,
     steps,
+    location,
+    Map,
+    guestCount,
+    roomCount,
+    bathroomCount,
     imageSrc,
+    register,
+    errors,
+    category,
+    setCustomValue,
+    isLoading,
   ]);
 
   return (
