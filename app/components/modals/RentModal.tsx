@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useMemo, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { useModal } from "@/app/hooks/use-modal-hook";
 
@@ -14,6 +14,9 @@ import ImageUpload from "../shared/input/ImageUpload";
 import CategoryInput from "../shared/input/CategoryInput";
 import CountrySelect from "../shared/input/CountrySelect";
 import Input from "../shared/input/Input";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 enum STEPS {
   CATEGORY = 0,
@@ -25,6 +28,7 @@ enum STEPS {
 }
 
 function RentModal() {
+  const router = useRouter();
   const { isOpen, onClose, type } = useModal();
   const [steps, setSteps] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +39,7 @@ function RentModal() {
     setValue,
     watch,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       category: "",
@@ -95,6 +100,32 @@ function RentModal() {
       }),
     [location]
   );
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (steps !== STEPS.PRICE) {
+      return onNext();
+    }
+
+    setIsLoading(true);
+    const notification = toast.loading("Creating your listing...");
+
+    try {
+      await axios.post("/api/listings", data);
+      toast.success("Listing Created", {
+        id: notification,
+      });
+      router.refresh();
+      reset();
+      setSteps(STEPS.CATEGORY);
+      onClose();
+    } catch (error: any) {
+      toast.error("Something went wrong!", {
+        id: notification,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const bodyContent = useMemo(() => {
     switch (steps) {
@@ -255,7 +286,7 @@ function RentModal() {
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={steps === STEPS.CATEGORY ? undefined : onBack}
       onClose={onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       isOpen={isRentModalOpen}
       title="HomeStays your home!"
       body={bodyContent}
