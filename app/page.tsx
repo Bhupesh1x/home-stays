@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import db from "./lib/db";
 import getCurrUser from "./actions/getCurrentUser";
 
@@ -15,13 +13,11 @@ export default async function Home() {
     },
   });
 
-  const safeListings = useMemo(() => {
-    return listings.map((listing) => ({
-      ...listing,
-      createdAt: listing.createdAt.toISOString(),
-      updatedAt: listing.updatedAt.toISOString(),
-    }));
-  }, [listings]);
+  const safeListings = listings.map((listing) => ({
+    ...listing,
+    createdAt: listing.createdAt.toISOString(),
+    updatedAt: listing.updatedAt.toISOString(),
+  }));
 
   if (!safeListings.length) {
     return <EmptyState showReset />;
