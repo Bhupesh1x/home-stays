@@ -20,7 +20,7 @@ const useFavorite = ({ listingId, currUser }: Props) => {
     const lists = currUser?.favouriteIds || [];
 
     return lists.includes(listingId);
-  }, [currUser?.favouriteIds, listingId]);
+  }, [currUser, listingId]);
 
   const toogleFavorite = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
