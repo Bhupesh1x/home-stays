@@ -3,14 +3,13 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { SafeUser } from "@/app/types";
-import { Listing } from "@prisma/client";
+import { SafeListings, SafeUser } from "@/app/types";
 
 import HeartButton from "../shared/HeartButton";
 import useCountries from "@/app/hooks/use-countries";
 
 type Props = {
-  listing: Listing;
+  listing: SafeListings;
   currUser?: SafeUser | null;
 };
 
