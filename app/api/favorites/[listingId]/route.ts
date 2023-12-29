@@ -50,7 +50,7 @@ export async function DELETE(req: Request, { params }: { params: IParams }) {
 
     let favouriteIds = [...(currUser.favouriteIds || [])];
 
-    favouriteIds.filter((id) => id !== listingId);
+    favouriteIds = favouriteIds.filter((id) => id !== listingId);
 
     const user = await db.user.update({
       where: {
