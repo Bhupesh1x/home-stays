@@ -1,9 +1,9 @@
-import db from "./lib/db";
-import getCurrUser from "./actions/getCurrentUser";
+import db from "../lib/db";
+import getCurrUser from "../actions/getCurrentUser";
 
-import Container from "./components/shared/Container";
-import EmptyState from "./components/shared/EmptyState";
-import ListingCard from "./components/listings/ListingCard";
+import Container from "../components/shared/Container";
+import EmptyState from "../components/shared/EmptyState";
+import ListingCard from "../components/listings/ListingCard";
 
 export default async function Home() {
   const currUser = await getCurrUser();
