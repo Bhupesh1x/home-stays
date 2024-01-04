@@ -2,12 +2,12 @@
 
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
-import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
+import { useCallback, useState } from "react";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 import { useModal } from "@/app/hooks/use-modal-hook";
 
