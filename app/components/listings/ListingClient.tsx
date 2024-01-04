@@ -6,10 +6,9 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Range } from "react-date-range";
 import { useRouter } from "next/navigation";
-import { Reservation } from "@prisma/client";
 import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
 
-import { SafeListings, SafeUser } from "@/app/types";
+import { SafeListings, SafeReservations, SafeUser } from "@/app/types";
 import { useModal } from "@/app/hooks/use-modal-hook";
 import { categories } from "@/app/components/navbar/Categories";
 
@@ -28,7 +27,7 @@ type Props = {
     user: SafeUser;
   };
   currUser?: SafeUser | null;
-  reservations: Reservation[];
+  reservations?: SafeReservations[];
 };
 
 function ListingClient({ listing, currUser, reservations = [] }: Props) {
