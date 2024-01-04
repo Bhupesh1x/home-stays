@@ -49,6 +49,8 @@ function ListingClient({ listing, currUser, reservations = [] }: Props) {
     }
 
     setIsLoading(true);
+    const notify = toast.loading("Reserving Listing...");
+
     try {
       await axios.post("/api/reservations", {
         totalPrice,
@@ -57,11 +59,15 @@ function ListingClient({ listing, currUser, reservations = [] }: Props) {
         listingId: listing?.id,
       });
 
-      toast.success("Listing Reserved");
+      toast.success("Listing Reserved!", {
+        id: notify,
+      });
       setDateRange(initialRange);
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong.", {
+        id: notify,
+      });
     } finally {
       setIsLoading(false);
     }
