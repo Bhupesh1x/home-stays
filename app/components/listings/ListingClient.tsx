@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { Range } from "react-date-range";
 import { useRouter } from "next/navigation";
 import { Reservation } from "@prisma/client";
-import { eachDayOfInterval, differenceInDays } from "date-fns";
+import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
 
 import { SafeListings, SafeUser } from "@/app/types";
 import { useModal } from "@/app/hooks/use-modal-hook";
@@ -77,7 +77,10 @@ function ListingClient({ listing, currUser, reservations = [] }: Props) {
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInDays(dateRange.endDate, dateRange.startDate);
+      const dayCount = differenceInCalendarDays(
+        dateRange.endDate,
+        dateRange.startDate
+      );
 
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);

@@ -1,6 +1,7 @@
 import { Range } from "react-date-range";
 
 import DateRangePicker from "../shared/input/DateRangePicker";
+import Button from "../shared/Button";
 
 type Props = {
   price: number;
@@ -34,6 +35,9 @@ function ListingReservations({
         onChange={(value) => onDateChange(value.selection)}
       />
       <hr />
+      <div className="p-4">
+        <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
+      </div>
       <div className="flex items-center justify-between text-lg font-semibold">
         <p>Total</p>
         <p>$ {totalPrice}</p>
