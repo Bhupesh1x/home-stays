@@ -8,9 +8,9 @@ import { Range } from "react-date-range";
 import { useRouter } from "next/navigation";
 import { eachDayOfInterval, differenceInCalendarDays } from "date-fns";
 
-import { SafeListings, SafeReservations, SafeUser } from "@/app/types";
 import { useModal } from "@/app/hooks/use-modal-hook";
 import { categories } from "@/app/components/navbar/Categories";
+import { SafeListings, SafeReservations, SafeUser } from "@/app/types";
 
 import ListingHead from "./ListingHead";
 import ListingInfo from "./ListingInfo";
@@ -62,7 +62,7 @@ function ListingClient({ listing, currUser, reservations = [] }: Props) {
         id: notify,
       });
       setDateRange(initialRange);
-      router.refresh();
+      router.push("/trips");
     } catch (error) {
       toast.error("Something went wrong.", {
         id: notify,
