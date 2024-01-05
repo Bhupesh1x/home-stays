@@ -32,7 +32,7 @@ function TripsClient({ reservations, currUser }: Props) {
         });
         router.refresh();
       } catch (error: any) {
-        toast.error(error?.response?.data?.error);
+        toast.error(error?.response?.data);
       } finally {
         setDeletingId("");
       }

@@ -66,6 +66,10 @@ function UserMenu({ currUser }: Props) {
                 label="My reservations"
                 onClick={() => router.push("/reservations")}
               />
+              <MenuItem
+                label="My Properties"
+                onClick={() => router.push("/properties")}
+              />
               <MenuItem label="HomeStays my home" onClick={onRentClick} />
               <hr />
               <MenuItem label="Logout" onClick={() => signOut()} />

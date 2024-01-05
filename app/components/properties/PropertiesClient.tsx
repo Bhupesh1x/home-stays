@@ -5,34 +5,38 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import { SafeReservations, SafeUser } from "@/app/types";
+import { SafeListings, SafeUser } from "@/app/types";
 
 import Heading from "../shared/Heading";
 import Container from "../shared/Container";
 import ListingCard from "../listings/ListingCard";
 
 type Props = {
-  reservations: SafeReservations[];
+  listings: SafeListings[];
   currUser?: SafeUser | null;
 };
 
-function ReservationClient({ reservations, currUser }: Props) {
+function PropertiesClient({ listings, currUser }: Props) {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
 
   const onCancel = useCallback(
     async (id: string) => {
-      const notify = toast.loading("Cancelling Reservation...");
+      const notify = toast.loading("Deleting Listing...");
       setDeletingId(id);
 
+      console.log("id", id);
+
       try {
-        await axios.delete(`/api/reservations/${id}`);
-        toast.success("Reservation Cancelled", {
+        await axios.delete(`/api/listings/${id}`);
+        toast.success("Listing Deleted", {
           id: notify,
         });
         router.refresh();
       } catch (error: any) {
-        toast.error(error?.response?.data);
+        toast.error(error?.response?.data, {
+          id: notify,
+        });
       } finally {
         setDeletingId("");
       }
@@ -42,19 +46,18 @@ function ReservationClient({ reservations, currUser }: Props) {
 
   return (
     <Container>
-      <Heading title="Reservations" subTitle="Bookings on your properties" />
+      <Heading title="Properties" subTitle="List of your properties." />
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => (
+        {listings.map((listing) => (
           <ListingCard
-            key={reservation.id}
-            listing={reservation.listing}
+            key={listing.id}
+            listing={listing}
             currUser={currUser}
-            actionId={reservation.id}
-            actionLabel="Cancel Guest Reservation"
-            disabled={deletingId === reservation.id}
+            actionId={listing.id}
+            actionLabel="Delete Property"
+            disabled={deletingId === listing.id}
             onAction={onCancel}
-            reservation={reservation}
           />
         ))}
       </div>
@@ -62,4 +65,4 @@ function ReservationClient({ reservations, currUser }: Props) {
   );
 }
 
-export default ReservationClient;
+export default PropertiesClient;
