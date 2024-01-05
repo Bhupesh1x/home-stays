@@ -6,6 +6,7 @@ import getCurrUser from "./actions/getCurrentUser";
 import Navbar from "./components/navbar/Navbar";
 import RentModal from "./components/modals/RentModal";
 import LoginModal from "./components/modals/LoginModal";
+import SearchModal from "./components/modals/SeacrhModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import ToastProvider from "./components/providers/ToastProvider";
 import ClientComponent from "./components/providers/ClientComponent";
@@ -29,10 +30,11 @@ export default async function RootLayout({
     <html lang="en" className={font.className}>
       <body>
         <ClientComponent>
-          <ToastProvider />
-          <RegisterModal />
-          <LoginModal />
           <RentModal />
+          <LoginModal />
+          <SearchModal />
+          <RegisterModal />
+          <ToastProvider />
           <Navbar currUser={currUser} />
         </ClientComponent>
         <div className="pt-28 pb-20">{children}</div>

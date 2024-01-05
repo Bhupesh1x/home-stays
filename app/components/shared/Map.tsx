@@ -16,7 +16,7 @@ Leaf.Icon.Default.mergeOptions({
 });
 
 type Props = {
-  center: number[];
+  center?: number[];
 };
 
 function Map({ center }: Props) {
