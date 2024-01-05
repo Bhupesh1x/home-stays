@@ -22,14 +22,14 @@ function PropertiesClient({ listings, currUser }: Props) {
 
   const onCancel = useCallback(
     async (id: string) => {
-      const notify = toast.loading("Deleting Listing...");
+      const notify = toast.loading("Deleting Property...");
       setDeletingId(id);
 
       console.log("id", id);
 
       try {
         await axios.delete(`/api/listings/${id}`);
-        toast.success("Listing Deleted", {
+        toast.success("Property Deleted", {
           id: notify,
         });
         router.refresh();
