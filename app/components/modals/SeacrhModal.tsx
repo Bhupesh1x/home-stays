@@ -183,7 +183,7 @@ function SearchModal() {
           </div>
         );
     }
-  }, [Map, bathroomCount, dateRange, guestCount, location, roomCount, steps]);
+  }, [bathroomCount, dateRange, guestCount, location, roomCount, steps]);
 
   return (
     <Modal
