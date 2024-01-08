@@ -1,0 +1,11 @@
+import { PuffLoader } from "react-spinners";
+
+function Loader() {
+  return (
+    <div className="h-[70vh] flex flex-col items-center justify-center">
+      <PuffLoader size={100} color="blue" />
+    </div>
+  );
+}
+
+export default Loader;
