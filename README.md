@@ -1,38 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏡 Home Stays
 
-## Getting Started
+**Home Stays** is a full-featured homestay rental platform that allows users to explore, list, and reserve properties around the world. Whether you're searching for a cozy apartment in Tokyo or listing your beach house in Portugal, Home Stays offers a seamless, modern experience for both travelers and hosts.
 
-First, run the development server:
+This dynamic web app is built with cutting-edge tools like **Next.js App Router**, **React Server Components**, **Prisma**, and **MongoDB**, providing excellent performance, scalability, and a responsive design. From interactive maps to authentication and user-friendly booking flows, Home Stays is a great reference for building modern full-stack applications.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Property Discovery & Reservation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Browse global listings with responsive grid layout
+- View individual listing details with full metadata and imagery
+- Reserve properties directly from listing pages
+- Integrated calendar availability
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Map Search & Filtering
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Used **React-Leaflet** for interactive map-based search
+- Filter listings by location, categories, and date range
+- Filters modal for enhanced search experience
 
-## Learn More
+### Listing Management
 
-To learn more about Next.js, take a look at the following resources:
+- Create and delete listings with intuitive form flow
+- Upload images, set price, category, and location with map preview
+- Filter properties by date, category, location, and more
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Favorites & Trips
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Favorite/unfavorite listings (saved to user profile)
+- View past and upcoming reservations on the **Trips** page
 
-## Deploy on Vercel
+### Authentication & Security
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Secure authentication with **NextAuth.js**
+- Social login via **Google** and **GitHub**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## 📸 Screenshots
+
+> > **Home Page (Listings with filters)**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123361/home-stays.vercel.app_homepage_mfkzgh.png" alt="" />
+
+> > **Search Modal (Location filter)**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123361/home-stays.vercel.app_filters_lfwbm3.png" alt="" />
+
+> > **Search Modal (Date filter)**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123361/home-stays.vercel.app_date_filters_g8w95l.png" alt="" />
+
+> > **Individual Listing Page**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123732/home-stays.vercel.app_listings_688dc569a287360b13a3f345_u6elhf.png" alt="" />
+
+> > **User Properties Page**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123362/home-stays.vercel.app_user_properties_qykjvb.png" alt="" />
+
+> > **User Reservations Page**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123360/home-stays.vercel.app_reservations_oueacc.png" alt="" />
+
+> > **User Different Options (Dropdown)**
+
+<img src="https://res.cloudinary.com/doqvdfvrj/image/upload/v1754123362/home-stays.vercel.app_options_ahl5h1.png" alt="" />
+
+---
